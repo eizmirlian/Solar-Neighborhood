@@ -24,23 +24,24 @@ class dataVisualization:
         y = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"]
         i = 0
         for item in item_details:
-            i += 1
-            if (lat > item["Location"][0] and lat < item["Location"][0] + self.width and 
-                long > item["Location"][1] and long < item["Location"][1] + self.width):
+            if (lat < item["Location"][0] and lat + self.width > item["Location"][0] and 
+                long < item["Location"][1] and long + self.width > item["Location"][1]):
+                i += 1
                 j = 0
                 for appliance in appliances:
                     total += sum(item[appliance])
                     hourTotal = np.add(hourTotal, item[appliance])
                     j += 1
-        total = total / i
-        totals.set_title("Average Total Usage")
-        totals.bar("total", total)
-        hourly.set_title("Average Hourly Usage Per Appliance")
-        hourTotal = hourTotal / i
-        hourly.plot(y, hourTotal)
-        hourly.set_title("Average Hourly Usage")
-        fig.show()
-        plt.show()
+        if i != 0:
+            total = total / i
+            totals.set_title("Average Total Usage")
+            totals.bar("total", total)
+            hourly.set_title("Average Hourly Usage Per Appliance")
+            hourTotal = hourTotal / i
+            hourly.plot(y, hourTotal)
+            hourly.set_title("Average Hourly Usage")
+            fig.show()
+            plt.show()
     
     def getUserData(self, id):
         item_details = self.collection.find()
@@ -67,7 +68,7 @@ class dataVisualization:
         for item in item_details:
             if item['_id'] != id:
                 continue
-            d = webdriver.Firefox()
+            d = webdriver.PhantomJS()
             lat = format(item["Location"][0], '.7f')
             long = format(item["Location"][1], '.7f')
             totalWH = 0
@@ -106,11 +107,12 @@ class dataVisualization:
             savings = elements.get_attribute("innerText")
 
             d.close()
+            return sunlightHours, availableSpace, recomendedSize, savings
 
 
-# data = dataVisualization()
-# location = [129, 217]
-# id = ObjectId('63538ba5a01d881466df8942')
+data = dataVisualization()
+location = [37, -91]
+id = ObjectId('63538ba5a01d881466df8942')
 # data.getUserData(id)
 # data.getCorporateData(location)
-# data.getSolarSavings(id)
+print(data.getSolarSavings(id))
