@@ -1,7 +1,8 @@
 import "./Questionnaire.css";
+//import "./Questionnaire.ts";
 import TimePicker from '@mui/lab/TimePicker';
 import React from "react";
-import Component from 'react'
+import Component from "react";
 import View from "react";
 import TextField from "react";
 import ScrollView from "react";
@@ -81,7 +82,11 @@ export class QuestionnairePage extends Component{
             </div>
         )
     }
+<<<<<<< HEAD
     checkInputBoxes() {
         
     }
 }
+=======
+}
+>>>>>>> 3006c3afe9f2cd5967a9c04b25a9097a55e83d1e

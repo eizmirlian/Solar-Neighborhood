@@ -1,7 +1,7 @@
-import {Appliances} from "./appliances/Appliances";
-import {WeeklyAppliances} from "./appliances/WeeklyAppliances";
-import {DailyAppliances} from "./appliances/DailyAppliances";
-import {AlwaysAppliances} from "./appliances/AlwaysAppliances";
+import {Appliances} from "./src/appliances/Appliances";
+import {WeeklyAppliances} from "./appliances/WeeklyAppliances.ts";
+import {DailyAppliances} from "./appliances/DailyAppliances.ts";
+import {AlwaysAppliances} from "./appliances/AlwaysAppliances.ts";
 import {QuestionnairePage} from "./QuestionnairePage";
 
 
