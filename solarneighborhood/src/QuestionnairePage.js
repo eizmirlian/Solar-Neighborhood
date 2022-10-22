@@ -1,5 +1,5 @@
 import "./Questionnaire.css";
-//import "./Questionnaire.ts";
+import "./Questionnaire.ts";
 import TimePicker from '@mui/lab/TimePicker';
 import React from "react";
 import Component from "react";
@@ -8,15 +8,15 @@ import TextField from "react";
 import ScrollView from "react";
 
 
-export class QuestionnairePage extends Component{
+export class QuestionnairePage{
     constructor(appliancesList) {
-        super();
         this.appliances = appliancesList;
         this.appliancesArr = [];
         this.state = {times: [], value: new Date('2022-10-22T4:18:54')}
     }
 
     render() {
+        console.log("in Render");
         var timeGroup = <View
         style={{
             flexDirection: "row",

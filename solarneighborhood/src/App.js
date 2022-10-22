@@ -15,7 +15,10 @@ function App() {
           Are you a:
         </p>
         <button className="Homepage-buttons" role= "button" onClick= {() => {
-            var q = Questionnaire();
+            console.log("Question");
+            var q = new Questionnaire();
+            q.Questions();
+            console.log("Created");
             }
         }>
           Consumer
