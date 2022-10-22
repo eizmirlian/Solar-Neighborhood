@@ -70,26 +70,47 @@ class dataVisualization:
             d = webdriver.Firefox()
             lat = format(item["Location"][0], '.7f')
             long = format(item["Location"][1], '.7f')
-            url = 'https://sunroof.withgoogle.com/building/{}/{}/#?f=buy'.format(lat, long) 
-            print(url)
+            totalWH = 0
+            for appliance in appliances:
+                totalWH += sum(item[appliance])
+            url = 'https://psc.ga.gov/utilities/electric/georgia-power-bill-calculator/'
+            d.get(url)
+            elements =  d.find_element("xpath", './/span[@id = "srsTierOne"]')
+            tier1Price = elements.get_attribute("innerText")
+            tier1Price = float(tier1Price[2:len(tier1Price)])
+            elements =  d.find_element("xpath", './/span[@id = "srsTierTwo"]')
+            tier2Price = elements.get_attribute("innerText")
+            tier2Price = float(tier2Price[2:len(tier2Price)])
+            elements =  d.find_element("xpath", './/span[@id = "srsTierThree"]')
+            tier3Price = elements.get_attribute("innerText")
+            tier3Price = float(tier3Price[2:len(tier3Price)])
+            bill = 0
+            if totalWH > 1000:
+                bill = 650 * tier1Price + 350 * tier2Price + (1000 - totalWH) * tier3Price
+            elif totalWH > 650:
+                bill = 650 * tier1Price + 350 * (totalWH - 650) * tier2Price
+            else:
+                bill = totalWH * tier1Price
+
+            url = 'https://sunroof.withgoogle.com/building/{}/{}/#?f=buy&b={}'.format(lat, long, bill) 
             d.get(url)
             elements = d.find_elements("css selector", '.panel-fact-text')
             sunlightHours = elements[0].get_attribute("innerText")
             availableSpace = elements[1].get_attribute("innerText")
-            print(sunlightHours)
-            print(availableSpace)
             elements = d.find_element("css selector", ".recommended-kw")
-            print(elements.get_attribute("innerText"))
             recomendedSize = elements.get_attribute("innerText")
-            elements = d.find_element("css selector", ".panel-estimate-savings")
-            print(elements.get_attribute("innerText"))
+            try:
+                elements = d.find_element("css selector", ".panel-estimate-savings")
+            except:
+                elements = d.find_element("css selector", ".panel-estimate-caption")
             savings = elements.get_attribute("innerText")
+
             d.close()
 
 
-data = dataVisualization()
-location = [129, 217]
-id = ObjectId('63538ba5a01d881466df8942')
+# data = dataVisualization()
+# location = [129, 217]
+# id = ObjectId('63538ba5a01d881466df8942')
 # data.getUserData(id)
 # data.getCorporateData(location)
-data.getSolarSavings(id)
+# data.getSolarSavings(id)
