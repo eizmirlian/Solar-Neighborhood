@@ -1,5 +1,3 @@
-
-
 export class Appliances {
 
     public always: boolean;

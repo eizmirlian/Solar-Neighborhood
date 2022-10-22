@@ -1,5 +1,5 @@
 import { number } from "prop-types";
-import {Appliances} from "./Appliances";
+import {Appliances} from "./Appliances.ts";
 
 
 export class WeeklyAppliances extends Appliances {

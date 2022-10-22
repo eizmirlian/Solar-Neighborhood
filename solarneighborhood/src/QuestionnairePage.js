@@ -1,10 +1,11 @@
 import "./Questionnaire.css";
+//import "./Questionnaire.ts";
 import TimePicker from '@mui/lab/TimePicker';
 import React from "react";
-import Component from 'react'
+import Component from "react";
 import View from "react";
 import TextField from "react";
-import ScrollView from "react;"
+import ScrollView from "react";
 
 
 export class QuestionnairePage extends Component{
