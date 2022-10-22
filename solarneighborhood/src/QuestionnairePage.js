@@ -4,7 +4,7 @@ import React from "react";
 import Component from 'react'
 import View from "react";
 import TextField from "react";
-import ScrollView from "react;"
+import ScrollView from "react";
 
 
 export class QuestionnairePage extends Component{
@@ -60,7 +60,7 @@ export class QuestionnairePage extends Component{
                         }}>
                         {this.state.times}
                     </ScrollView>
-                    <button onClick= {this.AddAnother()}>
+                    <button onClick= {AddAnother}>
                         Add Another Time
                     </button>
                 </div>
@@ -75,7 +75,13 @@ export class QuestionnairePage extends Component{
         return (
             <div className= "QuestionnaireStyle">
                 {this.appliancesArr}
+                <button onClick={() => }>
+                    Submit
+                </button>
             </div>
         )
+    }
+    checkInputBoxes() {
+        
     }
 }

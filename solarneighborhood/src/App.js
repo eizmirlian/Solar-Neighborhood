@@ -14,13 +14,13 @@ function App() {
         <p className= "Text">
           Are you a:
         </p>
-        <button className="Homepage-buttons" role= "button" onClick= {() => {
-            var q = Questionnaire();
+        <button className="Homepage-buttons" onClick= {() => {
+            var q = new Questionnaire();
             }
         }>
           Consumer
         </button>
-        <button className= "Homepage-buttons" role= "button">
+        <button className= "Homepage-buttons">
           Company
         </button>
     </div>
