@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 import numpy as np
+from selenium.webdriver.firefox.options import Options
 
 
 appliances = ["Oven", "TV"]
@@ -68,7 +69,9 @@ class dataVisualization:
         for item in item_details:
             if item['_id'] != id:
                 continue
-            d = webdriver.PhantomJS()
+            options = Options()
+            options.headless = True
+            d = webdriver.Firefox(options=options)
             lat = format(item["Location"][0], '.7f')
             long = format(item["Location"][1], '.7f')
             totalWH = 0
