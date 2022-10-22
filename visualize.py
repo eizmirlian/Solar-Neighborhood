@@ -1,3 +1,4 @@
+from selenium import webdriver
 import matplotlib.pyplot as plt
 from pymongo import MongoClient
 from bson.objectid import ObjectId
@@ -61,8 +62,34 @@ class dataVisualization:
         fig.show()
         plt.show()
 
+    def getSolarSavings(self, id):
+        item_details = self.collection.find()
+        for item in item_details:
+            if item['_id'] != id:
+                continue
+            d = webdriver.Firefox()
+            lat = format(item["Location"][0], '.7f')
+            long = format(item["Location"][1], '.7f')
+            url = 'https://sunroof.withgoogle.com/building/{}/{}/#?f=buy'.format(lat, long) 
+            print(url)
+            d.get(url)
+            elements = d.find_elements("css selector", '.panel-fact-text')
+            sunlightHours = elements[0].get_attribute("innerText")
+            availableSpace = elements[1].get_attribute("innerText")
+            print(sunlightHours)
+            print(availableSpace)
+            elements = d.find_element("css selector", ".recommended-kw")
+            print(elements.get_attribute("innerText"))
+            recomendedSize = elements.get_attribute("innerText")
+            elements = d.find_element("css selector", ".panel-estimate-savings")
+            print(elements.get_attribute("innerText"))
+            savings = elements.get_attribute("innerText")
+            d.close()
+
+
 data = dataVisualization()
 location = [129, 217]
 id = ObjectId('63538ba5a01d881466df8942')
-data.getUserData(id)
-data.getCorporateData(location)
+# data.getUserData(id)
+# data.getCorporateData(location)
+data.getSolarSavings(id)
