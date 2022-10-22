@@ -1,5 +1,6 @@
 import logo from './icons/logo.png';
 import './App.css';
+import {Questionnaire} from './Questionnaire.ts';
 
 function App() {
   return (
@@ -13,7 +14,10 @@ function App() {
         <p className= "Text">
           Are you a:
         </p>
-        <button className="Homepage-buttons" role= "button">
+        <button className="Homepage-buttons" role= "button" onClick= {() => {
+            var q = Questionnaire();
+            }
+        }>
           Consumer
         </button>
         <button className= "Homepage-buttons" role= "button">
