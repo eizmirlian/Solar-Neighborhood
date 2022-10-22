@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+import logo from './icons/logo.png';
 import './App.css';
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
         <p className= "Welcome">
           Welcome to Solar Neighborhood!
         </p>
-        
+      </header>
         <img src={logo} className="App-logo" alt="logo" />
         <p className= "Text">
           Are you a:
@@ -19,7 +19,6 @@ function App() {
         <button className= "Homepage-buttons" role= "button">
           Company
         </button>
-      </header>
     </div>
   );
 }

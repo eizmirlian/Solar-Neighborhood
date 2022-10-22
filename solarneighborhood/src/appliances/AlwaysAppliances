@@ -1,12 +1,12 @@
 namespace ConsumerClasses;
 
-class WeeklyAppliance : Appliances {
+class AlwaysAppliance : Appliances {
 
-    public WeeklyAppliance(string name, float wattage) {
+    public AlwaysAppliance(string name, float wattage) {
         this.name = name;
         this.wattage = wattage;
-        this.weekly = true;
-        this.always = false;
+        this.weekly = false;
+        this.always = true;
         this.daily = false;
     }
 
