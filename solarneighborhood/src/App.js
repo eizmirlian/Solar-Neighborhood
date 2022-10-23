@@ -26,6 +26,12 @@ function App() {
         <button className= "Homepage-buttons" role= "button">
           Company
         </button>
+        <button className="Homepage-buttons" role= "button" onClick= {() => {
+            console.log("click");
+           }
+        }>
+        Plot
+        </button>
     </div>
   );
 }
